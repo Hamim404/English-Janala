@@ -9,7 +9,15 @@ function displayWord(id) {
   const url = `https://openapi.programming-hero.com/api/level/${id}`;
   fetch(url)
   .then(res => res.json())
-  .then(data => wordDetails(data.data))
+  .then(data => {
+    wordDetails(data.data)
+    const lessonBtn= document.getElementById(`lesson-btn-${id}`)
+    const lessonAllBtn= document.querySelectorAll(".lesson-btn");
+    lessonAllBtn.forEach(btn => {
+      btn.classList.remove("active")
+    })
+    lessonBtn.classList.add("active")
+  })
   
   
 }
@@ -64,7 +72,7 @@ const levelContainer = document.getElementById("level-container");
     for ( const level of levels){
       const btnDiv = document.createElement("div")
 btnDiv.innerHTML = `
-                 <button id="lesson-btn" onclick="displayWord(${level.level_no})"  class="btn btn-outline btn-primary lesson-btn">
+                 <button id="lesson-btn-${level.level_no}" onclick="displayWord(${level.level_no})"  class="btn btn-outline btn-primary lesson-btn">
                  <i class="fa-solid fa-book-open"></i> Lesson - ${level.level_no}
                   </button>
     `
