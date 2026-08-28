@@ -140,7 +140,5 @@ document.getElementById("btn-search").addEventListener("click", () => {
     const filterSeach= allWords.filter(word => word.word.toLowerCase().includes(inputValue))
     wordDetails(filterSeach)
   })
-  console.log(inputValue)
-  
   
 })
